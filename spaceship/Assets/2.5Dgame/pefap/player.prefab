@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7591496365965336992}
   - component: {fileID: 1071427240336571188}
   - component: {fileID: 4926255136167493304}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: w
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 3232040322563314321}
   - component: {fileID: 5258043075797818312}
   - component: {fileID: 5377202245302849451}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -203,7 +203,7 @@ GameObject:
   - component: {fileID: 1013040370055549938}
   - component: {fileID: 2755271122312594300}
   - component: {fileID: 3457079293527707715}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -295,7 +295,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6303771460893375277}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: spaw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -330,7 +330,7 @@ GameObject:
   - component: {fileID: 2172234195288891930}
   - component: {fileID: 1297746205}
   - component: {fileID: 1297746204}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -453,7 +453,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   chackfloor: {fileID: 0}
+  haveJump: 0
+  jumpCount: 0
+  horizontal: 0
+  vertical: 0
   garvity: 0
   radius: 1
   speedMove: 10
   speedJump: 4
+  speedRotation: 0

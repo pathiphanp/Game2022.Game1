@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class bullet : MonoBehaviour
 {
+    public LayerMask player;
     public int speed;
     // Start is called before the first frame update
     void Start()
@@ -16,5 +17,13 @@ public class bullet : MonoBehaviour
     {
         transform.position += transform.up * speed * Time.deltaTime;
     }
+    private void OnCollisionEnter(Collision bulletX)
+    {
+        if (bulletX != null)
+        {
+            Destroy(gameObject);
+        }
+    }
+
 
 }
