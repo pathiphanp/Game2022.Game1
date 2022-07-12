@@ -44,7 +44,9 @@ public class Player001 : MonoBehaviour
             jump--;
             gravity = jump_pown;
         }
-        Vector3 pla_move_re = new Vector3(horizontal * speed_move, gravity, vertical * speed_move) * Time.deltaTime;
+
+
+        Vector3 pla_move_re = (((transform.right * horizontal + transform.forward * vertical) * speed_move) + new Vector3( 0, gravity,0)) * Time.deltaTime;
 
         if (horizontal == 0 && vertical == 0)
         {
@@ -54,7 +56,7 @@ public class Player001 : MonoBehaviour
         {
             player_anima.Play("walk");
         }
-        player_control.Move(pla_move_re);       
+        player_control.Move(pla_move_re);
     }
     void check_ground()
     {
