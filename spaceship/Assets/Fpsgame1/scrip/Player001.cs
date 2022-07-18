@@ -7,11 +7,16 @@ public class Player001 : MonoBehaviour
     CharacterController player_control;
 
     public GameObject oj_check_ground;
+    public GameObject bullet;
+    public GameObject spawn_bullet;
 
     public LayerMask ground;
 
     Animator player_anima;
 
+    public Camera fps_Cam;
+
+    public float range;
     public float max_jump;
     public float jump;
     public float speed_move;
@@ -31,6 +36,7 @@ public class Player001 : MonoBehaviour
     {
         player_move();
         check_ground();
+        Shoot_Pistol();
     }
 
     void player_move()
@@ -44,18 +50,16 @@ public class Player001 : MonoBehaviour
             jump--;
             gravity = jump_pown;
         }
-
-
         Vector3 pla_move_re = (((transform.right * horizontal + transform.forward * vertical) * speed_move) + new Vector3( 0, gravity,0)) * Time.deltaTime;
 
-        if (horizontal == 0 && vertical == 0)
+        /*if (horizontal == 0 && vertical == 0)
         {
             player_anima.Play("Idlea");
         }
         else if (horizontal != 0 || vertical != 0)
         {
             player_anima.Play("walk");
-        }
+        }*/
         player_control.Move(pla_move_re);
     }
     void check_ground()
@@ -64,6 +68,23 @@ public class Player001 : MonoBehaviour
         {
             jump = max_jump;
             gravity = 0;
+        }
+    }
+
+    void Shoot_Pistol()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            //Instantiate(bullet,spawn_bullet.transform.position,spawn_bullet.transform.rotation);
+        }
+    }
+
+    void Shoot()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(fps_Cam.transform.position,fps_Cam.transform.forward,out hit,range))
+        {
+            Debug.Log(hit.transform.name);
         }
     }
 

@@ -331,10 +331,10 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &1098385920
 BoxCollider:
@@ -427,6 +427,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onOff: 0
   addForword: 500
+  powJm: 20
 --- !u!1 &1711605845
 GameObject:
   m_ObjectHideFlags: 0

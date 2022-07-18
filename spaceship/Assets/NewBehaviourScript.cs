@@ -7,6 +7,8 @@ public class NewBehaviourScript : MonoBehaviour
     Rigidbody rd;
     public bool onOff;
     public int addForword;
+
+    public int powJm;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,10 +18,10 @@ public class NewBehaviourScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey("q"))
+        if (Input.GetKeyDown("space"))
         {
-            rd.AddForce(transform.forward  * addForword * Time.deltaTime);
-        }
-        
+            Debug.Log("g");
+            rd.AddForce(transform.up * powJm);
+        }      
     }
 }

@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class PlayerControl : MonoBehaviour
 {
+    SpriteRenderer player_color;
+    //Color player_color;
+
     Rigidbody2D rb;
 
     public GameObject chackGround;
@@ -25,18 +28,23 @@ public class PlayerControl : MonoBehaviour
     public int pointRe;
     public int pointWin;
 
+    Color fead;
+
     Animator playerAnima;
     // Start is called before the first frame update
     void Start()
     {
+        player_color = GetComponent<SpriteRenderer>();
         jumpHave = jumpMax;
         rb = GetComponent<Rigidbody2D>();
         playerAnima = GetComponent<Animator>();
+        fead.a = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+        player_color.color = fead;
         MovePla();
         Jump();
         ChackGround();
