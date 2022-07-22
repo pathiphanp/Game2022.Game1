@@ -1241,10 +1241,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6058d84ae85c9e441976702ce5590528, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouse_sensitivity: 0
+  mouse_sensitivity: 200
   player_boy: {fileID: 1151632483}
-  minClamp: -70
-  maxClamp: 70
+  minClamp: 75
+  maxClamp: 75
 --- !u!81 &1453956195
 AudioListener:
   m_ObjectHideFlags: 0
