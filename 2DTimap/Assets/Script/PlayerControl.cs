@@ -38,7 +38,7 @@ public class PlayerControl : MonoBehaviour
         jumpHave = jumpMax;
         rb = GetComponent<Rigidbody2D>();
         playerAnima = GetComponent<Animator>();
-        fead.a = 0;
+        //fead.a = 0;
     }
 
     // Update is called once per frame

@@ -16,6 +16,7 @@ public class Player001 : MonoBehaviour
 
     public Camera fps_Cam;
 
+    public float spawn_bullet_rage;
     public float range;
     public float max_jump;
     public float jump;
@@ -37,6 +38,7 @@ public class Player001 : MonoBehaviour
         player_move();
         check_ground();
         Shoot_Pistol();
+        Shoot();
     }
 
     void player_move()
@@ -70,21 +72,27 @@ public class Player001 : MonoBehaviour
             gravity = 0;
         }
     }
-
     void Shoot_Pistol()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            //Instantiate(bullet,spawn_bullet.transform.position,spawn_bullet.transform.rotation);
+            Instantiate(bullet,spawn_bullet.transform.position, spawn_bullet.transform.rotation);
+            range = 2.6f;
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            range = 0;
         }
     }
 
     void Shoot()
     {
+        Debug.DrawRay(fps_Cam.transform.position, fps_Cam.transform.forward * range);
+
         RaycastHit hit;
         if (Physics.Raycast(fps_Cam.transform.position,fps_Cam.transform.forward,out hit,range))
         {
-            Debug.Log(hit.transform.name);
+            //Debug.Log(hit.transform.name);
         }
     }
 
