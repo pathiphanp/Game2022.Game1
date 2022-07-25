@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public Enemy[] enemy;
     public LayerMask[] mask;
 
     Rigidbody2D rb;

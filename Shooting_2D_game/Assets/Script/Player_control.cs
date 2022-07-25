@@ -6,6 +6,7 @@ public class Player_control : MonoBehaviour
 {
     Rigidbody2D rb;
 
+    public GameObject box_map;
     public GameObject bullet;
     public GameObject spawn_bullet;
 
@@ -24,7 +25,9 @@ public class Player_control : MonoBehaviour
     {
         player_move();
         shoot();
- 
+        box_map_follow_player();
+
+
     }
     //????????????????????????
     void player_move()
@@ -51,5 +54,10 @@ public class Player_control : MonoBehaviour
         can_fire = false;
         yield return new WaitForSeconds(delay);
         can_fire = true;
+    }
+
+    void box_map_follow_player()
+    {
+        box_map.transform.position = new Vector3(transform.position.x,box_map.transform.position.y,transform.position.z);
     }
 }

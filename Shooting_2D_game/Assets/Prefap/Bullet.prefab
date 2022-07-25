@@ -97,6 +97,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9690317029ed35b41abc8c5ed6ba8d77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy:
+  - {fileID: 7273040018844588406, guid: d84c02a334356c8478f941c3ff20a075, type: 3}
+  - {fileID: 8389756030096084080, guid: 896f3cdeb9c6e5349a505d7bd4b57e6e, type: 3}
+  - {fileID: 5750126113276427618, guid: 11d5a97ce59f4f4449355e5fcab0ddd3, type: 3}
   mask:
   - serializedVersion: 2
     m_Bits: 128
