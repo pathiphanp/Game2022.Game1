@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7273040018844588408}
   - component: {fileID: 7273040018844588411}
   - component: {fileID: 7273040018844588409}
-  - component: {fileID: 7273040018844588406}
+  - component: {fileID: 3938684546108156931}
   m_Layer: 0
   m_Name: Square
   m_TagString: enemy
@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7273040018844588410}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.2, y: 2.87, z: 0}
+  m_LocalPosition: {x: -1.2, y: 3.89, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -110,7 +110,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &7273040018844588406
+--- !u!114 &3938684546108156931
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,8 +119,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 7273040018844588410}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dcbf14125346f84ba6a3daf2fc56bcf, type: 3}
+  m_Script: {fileID: 11500000, guid: b575d4dbf866d734690f843ffed60116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 4
-  hit: 0
+  health: 0
+  maxHealth: 0
