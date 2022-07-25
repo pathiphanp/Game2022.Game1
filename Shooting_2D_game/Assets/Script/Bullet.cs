@@ -4,12 +4,9 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public Enemy[] enemy;
     public LayerMask[] mask;
 
     Rigidbody2D rb;
-
-    public int index_mask;
 
     public float speed;
 
@@ -46,7 +43,10 @@ public class Bullet : MonoBehaviour
             }
             if (hit.collider.tag == "enemy")
             {
-                Destroy(hit.collider.gameObject);
+                if (hit.collider.TryGetComponent<Healthy_ship>(out Healthy_ship enemyComponent))
+                {
+                    enemyComponent.enemy_destroy(1);
+                }
                 Destroy(gameObject);
             }
         }
