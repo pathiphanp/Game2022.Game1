@@ -13,6 +13,7 @@ public class Player_control : MonoBehaviour
     public bool can_fire;
 
     public float speed;
+    public float speed_box_map;
     public float delay;
     // Start is called before the first frame update
     void Start()
@@ -55,6 +56,6 @@ public class Player_control : MonoBehaviour
 
     void box_map_follow_player()
     {
-        box_map.transform.position = new Vector3(transform.position.x,box_map.transform.position.y,transform.position.z);
+        box_map.transform.position = new Vector3(transform.position.x + speed_box_map, box_map.transform.position.y,transform.position.z);
     }
 }

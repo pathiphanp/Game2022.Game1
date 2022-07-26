@@ -41,15 +41,20 @@ public class Bullet : MonoBehaviour
             {
                 Destroy(gameObject);
             }
-            if (hit.collider.tag == "enemy")
-            {
-                if (hit.collider.TryGetComponent<Healthy_ship>(out Healthy_ship enemyComponent))
-                {
-                    enemyComponent.enemy_destroy(1);
-                }
-                Destroy(gameObject);
-            }
+            hit_enemy(hit, "enemy");
         }
         last_transfrom = transform.position;
+    }
+
+    void hit_enemy( RaycastHit2D hit_enemy , string enemy)
+    {
+        if (hit_enemy.collider.tag == enemy)
+        {
+            if (hit_enemy.collider.TryGetComponent<Healthy_ship>(out Healthy_ship enemyComponent))
+            {
+                enemyComponent.enemy_destroy(1);
+            }
+            Destroy(gameObject);
+        }
     }
 }
