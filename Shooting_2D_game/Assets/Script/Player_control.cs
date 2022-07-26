@@ -39,18 +39,15 @@ public class Player_control : MonoBehaviour
     //????????????
     void shoot()
     {
-        if (Input.GetButton("Jump"))
-        {
             if (can_fire == true)
             {
                 StartCoroutine(shoot_delay());
             }
-        }
     }
     //????????????
     IEnumerator shoot_delay()
     {
-        Instantiate(bullet, spawn_bullet.transform.position, bullet.transform.localRotation);
+        Instantiate(bullet, spawn_bullet.transform.position, spawn_bullet.transform.localRotation);
         can_fire = false;
         yield return new WaitForSeconds(delay);
         can_fire = true;
