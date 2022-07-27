@@ -6,6 +6,7 @@ public class Player_control : MonoBehaviour
 {
     Rigidbody2D rb;
 
+    public Bullet_player bullet_code;
     public GameObject box_map;
     public GameObject bullet;
     public GameObject spawn_bullet;
@@ -26,9 +27,7 @@ public class Player_control : MonoBehaviour
     {
         player_move();
         shoot();
-        box_map_follow_player();
-
-
+        //box_map_follow_player();
     }
     //????????????????????????
     void player_move()

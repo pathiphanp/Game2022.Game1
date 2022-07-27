@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet_player : MonoBehaviour
 {
-    public LayerMask[] mask;
+    [SerializeField] protected LayerMask[] mask;
 
-    Rigidbody2D rb;
+    protected Rigidbody2D rb;
 
-    public float speed;
+    [SerializeField] protected float speed;
+
+    [SerializeField] protected string enemy;
 
     Vector3 last_transfrom;
     // Start is called before the first frame update
@@ -21,7 +23,7 @@ public class Bullet : MonoBehaviour
     void Update()
     {
         bullet_fire();
-        bullet_check();
+        bullet_check(enemy);
     }
     //??????????????????????
     void bullet_fire()
@@ -29,8 +31,8 @@ public class Bullet : MonoBehaviour
         rb.velocity = transform.up * speed;
     }
     //??????????????????
-    void bullet_check()
-    {       
+    public virtual void bullet_check(string enemy)
+    {
         Vector2 direction = transform.position - last_transfrom;
         float direction_mag = direction.magnitude;
         Debug.DrawLine(last_transfrom,transform.position);
@@ -41,20 +43,15 @@ public class Bullet : MonoBehaviour
             {
                 Destroy(gameObject);
             }
-            hit_enemy(hit, "enemy");
+            if (hit.collider.tag == enemy)
+            {
+                if (hit.collider.TryGetComponent<Healthy_ship>(out Healthy_ship enemyComponent))
+                {
+                    enemyComponent.enemy_destroy(1);
+                }
+                Destroy(gameObject);
+            }
         }
         last_transfrom = transform.position;
-    }
-
-    void hit_enemy( RaycastHit2D hit_enemy , string enemy)
-    {
-        if (hit_enemy.collider.tag == enemy)
-        {
-            if (hit_enemy.collider.TryGetComponent<Healthy_ship>(out Healthy_ship enemyComponent))
-            {
-                enemyComponent.enemy_destroy(1);
-            }
-            Destroy(gameObject);
-        }
     }
 }
