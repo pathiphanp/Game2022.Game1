@@ -6,6 +6,8 @@ TagManager:
   tags:
   - oj
   - enemy
+  - player
+  - FX
   layers:
   - Default
   - TransparentFX

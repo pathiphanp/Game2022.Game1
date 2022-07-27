@@ -98,14 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9690317029ed35b41abc8c5ed6ba8d77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mask:
-  - serializedVersion: 2
-    m_Bits: 128
-  - serializedVersion: 2
-    m_Bits: 0
-  - serializedVersion: 2
-    m_Bits: 0
   speed: 10
+  enemy: enemy
 --- !u!50 &6489139577611121936
 Rigidbody2D:
   serializedVersion: 4

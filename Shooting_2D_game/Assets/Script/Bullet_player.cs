@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Bullet_player : MonoBehaviour
 {
-    [SerializeField] protected LayerMask[] mask;
 
     protected Rigidbody2D rb;
 
@@ -26,7 +25,7 @@ public class Bullet_player : MonoBehaviour
         bullet_check(enemy);
     }
     //??????????????????????
-    void bullet_fire()
+    public virtual void bullet_fire()
     {
         rb.velocity = transform.up * speed;
     }

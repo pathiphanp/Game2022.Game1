@@ -23,13 +23,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1270083790403898572}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: -0.76, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7273040018844588408}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!1 &7273040018844588410
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,5 +154,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  maxHealth: 0
-  bullet: {fileID: 7180889470671402046, guid: f61b1d29899409243996345525d7c333, type: 3}
+  maxHealth: 3
+  bullet_code: {fileID: 0}
+  spawn_bullet: {fileID: 1270083790403898572}
+  bullet: {fileID: 2704838528051760929, guid: f61b1d29899409243996345525d7c333, type: 3}
+  can_fire: 1
+  delay: 0.5
