@@ -37,8 +37,8 @@ public class Player001 : MonoBehaviour
     {
         player_move();
         check_ground();
-        Shoot_Pistol();
-        Shoot();
+        //Shoot_Pistol();
+        //Shoot();
     }
 
     void player_move()
