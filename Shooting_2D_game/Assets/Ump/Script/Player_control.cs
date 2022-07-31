@@ -68,6 +68,16 @@ public class Player_control : Healthy_ship
 
     void camera_follow_player()
     {
+        if (camera_follow.transform.position.y > 0.75)
+        {
+            camera_follow.transform.position = new Vector3(camera_follow.transform.position.x, 0.75f, camera_follow.transform.position.z);
+        }
+        else if (camera_follow.transform.position.y < -0.21)
+        {
+            camera_follow.transform.position = new Vector3(camera_follow.transform.position.x, -0.21f, camera_follow.transform.position.z);
+        }
         camera_follow.transform.position = Vector3.Lerp(camera_follow.transform.position, new Vector3(camera_follow.transform.position.x,transform.position.y,camera_follow.transform.position.z), speed_follow * Time.deltaTime);
     }
+
+
 }

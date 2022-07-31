@@ -15,14 +15,15 @@ public class Bullet_player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        last_transfrom = transform.position;
         rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        bullet_fire();
         bullet_check(enemy);
+        bullet_fire();    
     }
     //??????????????????????
     public virtual void bullet_fire()
