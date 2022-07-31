@@ -6,7 +6,6 @@ public class Player_control : Healthy_ship
 {
     Rigidbody2D rb;
 
-    public Bullet_player bullet_code;
     public GameObject box_map;
     public GameObject bullet;
     public GameObject spawn_bullet;
