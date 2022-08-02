@@ -9,7 +9,7 @@ public class MoveBackground : MonoBehaviour
     
     GameObject cam;
     [SerializeField] float parallax_effect;
-    [SerializeField] int time;
+    [SerializeField] float time;
  
     // Start is called before the first frame update
     void Start()
@@ -26,14 +26,14 @@ public class MoveBackground : MonoBehaviour
         float str_pus_dis = start_pos + distance;
         transform.position = new Vector3( Mathf.Lerp(transform.position.x,str_pus_dis,time * Time.deltaTime),transform.position.y,transform.position.z);
 
-        if (temp > start_pos + length)
+        if (temp + 5 > start_pos + length)
         {
             float gopoint = start_pos += length;
             Mathf.Lerp(start_pos,gopoint,1 * Time.deltaTime);
 
         }
 
-        else if (temp < start_pos - length)
+        else if (temp - 5 < start_pos - length)
         {
             float backpoint = start_pos -= length;
             Mathf.Lerp(start_pos,backpoint,1 * Time.deltaTime);

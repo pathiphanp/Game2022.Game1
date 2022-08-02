@@ -39,7 +39,7 @@ public class Player_control : Healthy_ship
         float vertical = Input.GetAxis("Vertical");
         rb.velocity = (transform.right * horizontal + transform.up * vertical) * speed;
     }
-    //????????????
+    //?????????
     void shoot()
     {
             if (can_fire == true)
