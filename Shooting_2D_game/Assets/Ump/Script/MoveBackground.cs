@@ -18,14 +18,13 @@ public class MoveBackground : MonoBehaviour
         start_pos = transform.position.x;
         length = GetComponent<SpriteRenderer>().bounds.size.x;
     }
-
     // Update is called once per frame
     void Update()
     {
         float temp = (cam.transform.position.x * (1 - parallax_effect));
         float distance = (cam.transform.position.x * parallax_effect);
         float str_pus_dis = start_pos + distance;
-        transform.position = new Vector3( Mathf.Lerp(transform.position.x,str_pus_dis,time / Time.deltaTime),transform.position.y,transform.position.z);
+        transform.position = new Vector3( Mathf.Lerp(transform.position.x,str_pus_dis,time * Time.deltaTime),transform.position.y,transform.position.z);
 
         if (temp > start_pos + length)
         {
