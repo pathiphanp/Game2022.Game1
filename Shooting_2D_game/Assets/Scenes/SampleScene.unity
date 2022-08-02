@@ -340,6 +340,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parallax_effect: 0
+  time: 5
 --- !u!1 &54907971
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,6 +439,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parallax_effect: 0.8
+  time: 5
 --- !u!1 &128361692
 GameObject:
   m_ObjectHideFlags: 0
@@ -538,6 +540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parallax_effect: 0.3
+  time: 5
 --- !u!1 &177146502
 GameObject:
   m_ObjectHideFlags: 0
@@ -1066,6 +1069,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parallax_effect: 0
+  time: 0
 --- !u!1 &670464419
 GameObject:
   m_ObjectHideFlags: 0
@@ -1440,6 +1444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parallax_effect: 0
+  time: 0
 --- !u!1 &1148379721
 GameObject:
   m_ObjectHideFlags: 0
@@ -1899,6 +1904,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parallax_effect: 0.5
+  time: 5
 --- !u!1 &1492602450
 GameObject:
   m_ObjectHideFlags: 0
@@ -2278,6 +2284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parallax_effect: 1.1
+  time: 5
 --- !u!1 &1638070188
 GameObject:
   m_ObjectHideFlags: 0
