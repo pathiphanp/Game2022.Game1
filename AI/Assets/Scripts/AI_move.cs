@@ -9,11 +9,20 @@ public class AI_move : MonoBehaviour
     Rigidbody rb;
     [SerializeField] bool str_rnd;
 
-    int i = 0   ;
+    int i;
+
+    [SerializeField] float direction;
+    [SerializeField] float time;
+    [SerializeField] float ro;
+    [SerializeField] float ro_max;
+    [SerializeField] float ro_min;
     [SerializeField] float delay;
+    [SerializeField] float delay_ro;
     [SerializeField] float delay_normal;
     [SerializeField] float delay_atk;
     [SerializeField] float speed_ro;
+    [SerializeField] float speed_ro_left;
+    [SerializeField] float speed_ro_rigth;
     [SerializeField] float speed_ro_reverse;
     [SerializeField] float speed_move;
     [SerializeField] float speed_move_atk;
@@ -31,69 +40,53 @@ public class AI_move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //time += Time.deltaTime;
         ai_move_set();
+        chackwall();
     }
 
     void ai_move_set()
-    {      
+    {
+        rb.velocity = transform.forward * speed_move;
+        transform.Rotate(0,speed_ro * Time.deltaTime,0);
         System.Random rnd = new System.Random();
         if (str_rnd == true)
         {
-            speed_ro_reverse = 0;
-            i = rnd.Next(0, 4);
+            i = rnd.Next(0,3);
             str_rnd = false;
             StartCoroutine(delay_rnd());         
         }
         if (i == 0)
         {
-            rb.velocity = transform.forward * speed_move;
-            transform.Rotate(0, (speed_ro * Time.deltaTime), 0);
+            speed_ro = speed_ro_left;
         }
         else if (i == 1)
         {
-            rb.velocity = transform.forward * speed_move;
-            transform.Rotate(0, (-speed_ro * Time.deltaTime), 0);
+            speed_ro = speed_ro_rigth;
         }
         else if (i == 2)
         {
-            rb.velocity = transform.forward * speed_move;
-        }
-        else if (i == 3)
-        {
-            transform.LookAt(target.transform.position);
-            transform.Translate(rb.velocity = transform.forward * speed_move * Time.deltaTime);
-
+            speed_ro = 0;
         }
     }
-
     IEnumerator delay_rnd()
     {
         yield return new WaitForSeconds(delay);
         str_rnd = true;
     }
 
-    private void OnCollisionEnter(Collision ai)
+    void chackwall()
     {
-        if (ai.gameObject.tag == "wallleft" )
+        RaycastHit hit;
+        Debug.DrawRay(transform.position, transform.forward * direction);
+
+        if (Physics.Raycast(transform.position,transform.forward,out hit,direction))
         {
-           speed_ro_reverse = -320;
-           transform.eulerAngles = new Vector3(transform.rotation.x, transform.rotation.y + speed_ro_reverse, transform.rotation.z);
-        }
-        else if (ai.gameObject.tag == "wallrigth")
-        {
-            speed_ro_reverse = -120;
-            transform.eulerAngles = new Vector3(transform.rotation.x, transform.rotation.y + speed_ro_reverse, transform.rotation.z);
-        }
-        else if (ai.gameObject.tag == "walldown")
-        {
-            speed_ro_reverse = 320;
-            transform.eulerAngles = new Vector3(transform.rotation.x, transform.rotation.y + speed_ro_reverse, transform.rotation.z);
-        }
-        if (ai.gameObject.tag == "walltop")
-        {
-            speed_ro_reverse = 120;
-            transform.eulerAngles = new Vector3(transform.rotation.x, transform.rotation.y + speed_ro_reverse, transform.rotation.z);
+            if (hit.collider.gameObject.tag == "wall")
+            {
+                speed_ro += speed_ro_reverse;
+            }
+            Debug.Log(hit.collider.gameObject.name);
         }
     }
-
 }

@@ -9,6 +9,7 @@ TagManager:
   - wallrigth
   - walldown
   - walltop
+  - wall
   layers:
   - Default
   - TransparentFX
