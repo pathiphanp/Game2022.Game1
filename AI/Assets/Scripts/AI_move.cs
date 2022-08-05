@@ -11,6 +11,8 @@ public class AI_move : MonoBehaviour
 
     int i;
 
+    Vector3 relativePos;
+
     [SerializeField] float direction;
     [SerializeField] float time;
     [SerializeField] float ro;
@@ -42,7 +44,6 @@ public class AI_move : MonoBehaviour
     {
         //time += Time.deltaTime;
         ai_move_set();
-        chackwall();
     }
 
     void ai_move_set()
@@ -75,18 +76,64 @@ public class AI_move : MonoBehaviour
         str_rnd = true;
     }
 
-    void chackwall()
+    private void OnCollisionEnter(Collision collision)
     {
-        RaycastHit hit;
-        Debug.DrawRay(transform.position, transform.forward * direction);
 
-        if (Physics.Raycast(transform.position,transform.forward,out hit,direction))
+        if (collision.gameObject.tag == "walldown")
         {
-            if (hit.collider.gameObject.tag == "wall")
+            if (transform.localRotation.y >= 180f)
             {
-                speed_ro += speed_ro_reverse;
+                Debug.Log("gg");
+                relativePos = new Vector3(-1, 0, 1);
             }
-            Debug.Log(hit.collider.gameObject.name);
+            else if (transform.localRotation.y < 180f)
+            {
+                relativePos = new Vector3(1, 0, 1);
+            }
+            Quaternion rotation = Quaternion.LookRotation(relativePos);
+            transform.rotation = rotation;
         }
+        if (collision.gameObject.tag == "walltop")
+        {
+            //relativePos = target[1].transform.position - transform.position;
+            if (transform.localRotation.y >= 0f)
+            {
+                relativePos = new Vector3(1, 0, -1);
+            }
+            else if (transform.localRotation.y < 0f)
+            {
+                relativePos = new Vector3(-1, 0, -1);
+            }
+            Quaternion rotation = Quaternion.LookRotation(relativePos);
+            transform.rotation = rotation;
+        }
+        if (collision.gameObject.tag == "wallrigth")
+        {
+            if (transform.localRotation.y >= 90)
+            {
+                relativePos = new Vector3(-1, 0, 1);           
+            }
+            else if (transform.localRotation.y < 90)
+            {
+                relativePos = new Vector3(-1, 0, -1);
+            }
+            Quaternion rotation = Quaternion.LookRotation(relativePos);
+            transform.rotation = rotation;
+        }
+        if (collision.gameObject.tag == "wallleft")
+        {
+            if (transform.localRotation.y >= -90)
+            {
+                relativePos = new Vector3(1, 0, -1);
+            }
+            else if (transform.localRotation.y < -90)
+            {
+                relativePos = new Vector3(1, 0, 1);
+            }
+            Quaternion rotation = Quaternion.LookRotation(relativePos);
+            transform.rotation = rotation;
+        }
+
     }
+
 }
