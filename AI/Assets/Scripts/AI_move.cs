@@ -12,6 +12,8 @@ public class AI_move : MonoBehaviour
     int i;
 
     Vector3 relativePos;
+    Vector3 relative;
+    Vector3 lastVelocity;
 
     [SerializeField] float direction;
     [SerializeField] float time;
@@ -44,6 +46,7 @@ public class AI_move : MonoBehaviour
     {
         //time += Time.deltaTime;
         ai_move_set();
+        Chack_collision();
     }
 
     void ai_move_set()
@@ -53,7 +56,7 @@ public class AI_move : MonoBehaviour
         System.Random rnd = new System.Random();
         if (str_rnd == true)
         {
-            i = rnd.Next(0,3);
+            i = rnd.Next(2,3);
             str_rnd = false;
             StartCoroutine(delay_rnd());         
         }
@@ -76,62 +79,73 @@ public class AI_move : MonoBehaviour
         str_rnd = true;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    void Chack_collision()
     {
+        relativePos = transform.forward.normalized;
+        var ray = new Ray(transform.position, transform.forward);
+        Debug.DrawRay(ray.origin, ray.direction * direction);
+        RaycastHit hit;
+        if (Physics.Raycast(ray.origin, ray.direction, out hit, direction))
+        {
+            if (hit.collider.gameObject != null)
+            {
+                Debug.Log("ai . forward" + transform.forward.normalized);
+                if (relativePos.x <= -0.8)
+                {
+                    //go down
+                    if (relativePos.z < 0.1)
+                    {
+                        relative = new Vector3(1, 0, -1);
+                    }
+                    //go top
+                    else if (relativePos.z > -0.1)
+                    {
+                        relative = new Vector3(1, 0, 1);
+                    }
+                }
+                if (relativePos.x >= 0.8)
+                {
+                    //go down
+                    if (relativePos.z < 0.1)
+                    {
+                        relative = new Vector3(-1, 0, -1);
+                    }
+                    //go top
+                    else if (relativePos.z > -0.1)
+                    {
+                        relative = new Vector3(-1, 0, 1);
+                    }
+                }
+                if (relativePos.z >= 0.8)
+                {
+                    //go Left
+                    if (relativePos.x < 0.1)
+                    {
+                        relative = new Vector3(-1, 0, -1);
+                    }
+                    //go Rigth
+                    else if (relativePos.x > -0.1)
+                    {
+                        relative = new Vector3(1, 0, -1);
+                    }
+                }
+                if (relativePos.z <= -0.8)
+                {
+                    //go Left
+                    if (relativePos.x < 0.1)
+                    {
+                        relative = new Vector3(-1, 0, 1);
+                    }
+                    //go Rigth
+                    else if (relativePos.x > -0.1)
+                    {
+                        relative = new Vector3(1, 0, 1);
+                    }
+                }
 
-        if (collision.gameObject.tag == "walldown")
-        {
-            if (transform.localRotation.y >= 180f)
-            {
-                Debug.Log("gg");
-                relativePos = new Vector3(-1, 0, 1);
             }
-            else if (transform.localRotation.y < 180f)
-            {
-                relativePos = new Vector3(1, 0, 1);
-            }
-            Quaternion rotation = Quaternion.LookRotation(relativePos);
-            transform.rotation = rotation;
-        }
-        if (collision.gameObject.tag == "walltop")
-        {
-            //relativePos = target[1].transform.position - transform.position;
-            if (transform.localRotation.y >= 0f)
-            {
-                relativePos = new Vector3(1, 0, -1);
-            }
-            else if (transform.localRotation.y < 0f)
-            {
-                relativePos = new Vector3(-1, 0, -1);
-            }
-            Quaternion rotation = Quaternion.LookRotation(relativePos);
-            transform.rotation = rotation;
-        }
-        if (collision.gameObject.tag == "wallrigth")
-        {
-            if (transform.localRotation.y >= 90)
-            {
-                relativePos = new Vector3(-1, 0, 1);           
-            }
-            else if (transform.localRotation.y < 90)
-            {
-                relativePos = new Vector3(-1, 0, -1);
-            }
-            Quaternion rotation = Quaternion.LookRotation(relativePos);
-            transform.rotation = rotation;
-        }
-        if (collision.gameObject.tag == "wallleft")
-        {
-            if (transform.localRotation.y >= -90)
-            {
-                relativePos = new Vector3(1, 0, -1);
-            }
-            else if (transform.localRotation.y < -90)
-            {
-                relativePos = new Vector3(1, 0, 1);
-            }
-            Quaternion rotation = Quaternion.LookRotation(relativePos);
-            transform.rotation = rotation;
+            transform.rotation = Quaternion.LookRotation(relative);
+
         }
 
     }
