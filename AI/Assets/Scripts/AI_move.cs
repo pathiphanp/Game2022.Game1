@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class AI_move : MonoBehaviour
 {
-    public GameObject target;
-
     Rigidbody rb;
     [SerializeField] bool str_rnd;
 
@@ -15,15 +13,12 @@ public class AI_move : MonoBehaviour
     Vector3 relative;
     Vector3 lastVelocity;
 
+    [SerializeField] LayerMask wall;
+
+    [SerializeField] string direction_name_word;
     [SerializeField] float direction;
-    [SerializeField] float time;
-    [SerializeField] float ro;
-    [SerializeField] float ro_max;
-    [SerializeField] float ro_min;
+    [SerializeField] float direction_word;
     [SerializeField] float delay;
-    [SerializeField] float delay_ro;
-    [SerializeField] float delay_normal;
-    [SerializeField] float delay_atk;
     [SerializeField] float speed_ro;
     [SerializeField] float speed_ro_left;
     [SerializeField] float speed_ro_rigth;
@@ -56,7 +51,7 @@ public class AI_move : MonoBehaviour
         System.Random rnd = new System.Random();
         if (str_rnd == true)
         {
-            i = rnd.Next(2,3);
+            i = rnd.Next(0,3);
             str_rnd = false;
             StartCoroutine(delay_rnd());         
         }
@@ -82,70 +77,111 @@ public class AI_move : MonoBehaviour
     void Chack_collision()
     {
         relativePos = transform.forward.normalized;
+        Debug.Log(relativePos);
         var ray = new Ray(transform.position, transform.forward);
-        Debug.DrawRay(ray.origin, ray.direction * direction);
+        Debug.DrawRay(ray.origin, ray.direction * direction, Color.yellow);
+        Debug.DrawRay(ray.origin, ray.direction * direction_word,Color.red);
         RaycastHit hit;
+        RaycastHit hit2;
+        if (Physics.Raycast(ray.origin,ray.direction,out hit2,direction_word,wall))
+        {
+            if (hit2.collider.gameObject.tag == "walltop")
+            {
+                direction_name_word = "walltop";
+            }
+            if (hit2.collider.gameObject.tag == "walldown")
+            {
+                direction_name_word = "walldown";
+            }
+            if (hit2.collider.gameObject.tag == "wallleft")
+            {
+                direction_name_word = "wallleft";
+            }
+            if (hit2.collider.gameObject.tag == "wallrigth")
+            {
+                direction_name_word = "wallrigth";
+            }
+        }
         if (Physics.Raycast(ray.origin, ray.direction, out hit, direction))
         {
             if (hit.collider.gameObject != null)
             {
-                Debug.Log("ai . forward" + transform.forward.normalized);
-                if (relativePos.x <= -0.8)
+                Debug.Log("hit");
+                if (direction_name_word == "wallleft")
                 {
+                    //go behind
+                    if (relativePos.x == -1)
+                    {
+                        relative = new Vector3(1, 0, 0);
+                    }
                     //go down
-                    if (relativePos.z < 0.1)
+                    else if (relativePos.z < 0)
                     {
                         relative = new Vector3(1, 0, -1);
                     }
                     //go top
-                    else if (relativePos.z > -0.1)
+                    else if (relativePos.z > 0)
                     {
                         relative = new Vector3(1, 0, 1);
                     }
                 }
-                if (relativePos.x >= 0.8)
+                else if (direction_name_word == "wallrigth")
                 {
+                    //go behind
+                    if (relativePos.x == 1)
+                    {
+                        relative = new Vector3(-1, 0, 0);
+                    }
                     //go down
-                    if (relativePos.z < 0.1)
+                    else if (relativePos.z < 0)
                     {
                         relative = new Vector3(-1, 0, -1);
                     }
                     //go top
-                    else if (relativePos.z > -0.1)
+                    else if (relativePos.z > 0)
                     {
                         relative = new Vector3(-1, 0, 1);
                     }
                 }
-                if (relativePos.z >= 0.8)
+                else if (direction_name_word == "walltop")
                 {
+                    //go behind
+                    if (relativePos.z == 1)
+                    {
+                        relative = new Vector3(0, 0, -1);
+                    }
                     //go Left
-                    if (relativePos.x < 0.1)
+                    if (relativePos.x < 0)
                     {
                         relative = new Vector3(-1, 0, -1);
                     }
                     //go Rigth
-                    else if (relativePos.x > -0.1)
+                    else if (relativePos.x > 0)
                     {
                         relative = new Vector3(1, 0, -1);
                     }
                 }
-                if (relativePos.z <= -0.8)
+                else if (direction_name_word == "walldown")
                 {
+                    //go behind
+                    if (relativePos.z == -1)
+                    {
+                        relative = new Vector3(0, 0, 1);
+                    }
                     //go Left
-                    if (relativePos.x < 0.1)
+                    else if (relativePos.x < 0)
                     {
                         relative = new Vector3(-1, 0, 1);
                     }
                     //go Rigth
-                    else if (relativePos.x > -0.1)
+                    else if (relativePos.x > 0)
                     {
                         relative = new Vector3(1, 0, 1);
                     }
                 }
 
+                transform.rotation = Quaternion.LookRotation(relative);
             }
-            transform.rotation = Quaternion.LookRotation(relative);
-
         }
 
     }
