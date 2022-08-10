@@ -28,6 +28,5 @@ public class Player_control : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
         rb.velocity = (transform.forward * vertical + transform.right * horizontal) * speed ;
-
     }
 }

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class AI_move : MonoBehaviour
 {
+    public GameObject bullet;
+    public GameObject spawn_bullet;
+
     Rigidbody rb;
     [SerializeField] bool str_rnd;
 
@@ -11,18 +14,21 @@ public class AI_move : MonoBehaviour
 
     Vector3 relativePos;
     Vector3 relative;
-    Vector3 lastVelocity;
 
     [SerializeField] LayerMask wall;
 
     [SerializeField] string direction_name_word;
-    [SerializeField] float direction;
+
+    [SerializeField] bool can_fire;
+
+    [SerializeField] int max_fire;
+
+    [SerializeField] float direction_forllow;
     [SerializeField] float direction_word;
     [SerializeField] float delay;
     [SerializeField] float speed_ro;
     [SerializeField] float speed_ro_left;
     [SerializeField] float speed_ro_rigth;
-    [SerializeField] float speed_ro_reverse;
     [SerializeField] float speed_move;
     [SerializeField] float speed_move_atk;
 
@@ -77,9 +83,9 @@ public class AI_move : MonoBehaviour
     void Chack_collision()
     {
         relativePos = transform.forward.normalized;
-        Debug.Log(relativePos);
+        //Debug.Log(relativePos);
         var ray = new Ray(transform.position, transform.forward);
-        Debug.DrawRay(ray.origin, ray.direction * direction, Color.yellow);
+        Debug.DrawRay(ray.origin, ray.direction * direction_forllow, Color.yellow);
         Debug.DrawRay(ray.origin, ray.direction * direction_word,Color.red);
         RaycastHit hit;
         RaycastHit hit2;
@@ -102,7 +108,7 @@ public class AI_move : MonoBehaviour
                 direction_name_word = "wallrigth";
             }
         }
-        if (Physics.Raycast(ray.origin, ray.direction, out hit, direction))
+        if (Physics.Raycast(ray.origin, ray.direction, out hit, direction_forllow))
         {
             if (hit.collider.gameObject != null)
             {
@@ -186,4 +192,16 @@ public class AI_move : MonoBehaviour
 
     }
 
+    IEnumerator fire_bullet()
+    {
+        if (can_fire == true)
+        {
+            for (int i = 0; i < max_fire; i++)
+            {
+                Instantiate(bullet, spawn_bullet.transform.position, spawn_bullet.transform.localRotation);
+            }
+            can_fire = false;
+        }
+        yield return null;
+    }
 }
